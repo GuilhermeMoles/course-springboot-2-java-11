@@ -1,14 +1,19 @@
 package com.projetaae.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class User implements Serializable{
+@Table(name = "tb_user")
+public class User implements Serializable {
     /**
      *
      */
@@ -16,14 +21,17 @@ public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
 
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
     public User() {
-    }   
+    }
 
     public User(Long id, String name, String email, String phone, String password) {
         this.id = id;
@@ -32,7 +40,11 @@ public class User implements Serializable{
         this.phone = phone;
         this.password = password;
     }
-    
+
+    public List<Order> getOrders() {
+        return orders;
+    }    
+
     public Long getId() {
         return id;
     }
