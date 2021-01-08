@@ -1,7 +1,5 @@
 package com.projetaae.course.enums;
 
-import com.projetaae.course.entities.Order;
-
 public enum OrderStatus {
     WAITING_PAYMENT(1),
     PAID(2),
@@ -26,6 +24,9 @@ public enum OrderStatus {
             }
         }
         throw new IllegalArgumentException("Invalid Status Code!");
+    }
+
+    private OrderStatus() {
     }
 
 }
